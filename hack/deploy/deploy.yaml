@@ -26,6 +26,11 @@ spec:
         - containerPort: 9855
         - containerPort: 50055
         - containerPort: 56790
+        readinessProbe:
+          httpGet:
+            path: /apis/status/json
+            port: 9855
+            scheme: HTTP
 ---
 apiVersion: v1
 kind: Service

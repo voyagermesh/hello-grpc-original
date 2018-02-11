@@ -47,3 +47,5 @@ Now visit: http://192.168.99.100:30596/apis/hello/v1alpha1/intro/json?name=tamal
 ## Status Endpoint
 
 Hello GRPC server has a `/apis/status/json` endpoint which can be used to probe heatlh of the service.
+
+![hello-grpc-status](/docs/images/hello-grpc-status.png)
