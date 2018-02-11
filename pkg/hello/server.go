@@ -9,15 +9,15 @@ import (
 )
 
 func init() {
-	endpoints.GRPCServerEndpoints.Register(proto.RegisterHelloServer, &Server{})
-	endpoints.ProxyServerEndpoints.Register(proto.RegisterHelloHandlerFromEndpoint)
-	endpoints.ProxyServerCorsPattern.Register(proto.ExportHelloCorsPatterns())
+	endpoints.GRPCServerEndpoints.Register(proto.RegisterHelloServiceServer, &Server{})
+	endpoints.ProxyServerEndpoints.Register(proto.RegisterHelloServiceHandlerFromEndpoint)
+	endpoints.ProxyServerCorsPattern.Register(proto.ExportHelloServiceCorsPatterns())
 }
 
 type Server struct {
 }
 
-var _ proto.HelloServer = &Server{}
+var _ proto.HelloServiceServer = &Server{}
 
 func (s *Server) Intro(ctx context.Context, req *proto.IntroRequest) (*proto.IntroResponse, error) {
 	return &proto.IntroResponse{

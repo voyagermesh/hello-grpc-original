@@ -19,6 +19,7 @@ import (
 	_ "github.com/appscode/hello-grpc/pkg/hello"
 	"github.com/appscode/hello-grpc/pkg/server/cmd/options"
 	"github.com/appscode/hello-grpc/pkg/server/endpoints"
+	_ "github.com/appscode/hello-grpc/pkg/status"
 	goprom "github.com/grpc-ecosystem/go-grpc-prometheus"
 	gwrt "github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
