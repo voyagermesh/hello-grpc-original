@@ -14,7 +14,7 @@
     },
     "v1alpha1IntroResponse": {
       "properties": {
-        "into": {
+        "intro": {
           "type": "string"
         }
       },
@@ -27,9 +27,9 @@
     "version": "1alpha1"
   },
   "paths": {
-    "/apis/hello/v1alpha1/into/json": {
+    "/apis/hello/v1alpha1/intro/json": {
       "get": {
-        "operationId": "Into",
+        "operationId": "Intro",
         "parameters": [
           {
             "in": "query",

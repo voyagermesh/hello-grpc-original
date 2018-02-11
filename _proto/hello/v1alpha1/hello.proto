@@ -12,9 +12,9 @@ import "google/api/annotations.proto";
 import "appscode/api/annotations.proto";
 
 service Hello {
-  rpc Into(IntroRequest) returns (IntroResponse) {
+  rpc Intro(IntroRequest) returns (IntroResponse) {
     option (google.api.http) = {
-      get : "/apis/hello/v1alpha1/into/json"
+      get : "/apis/hello/v1alpha1/intro/json"
     };
   }
 }
@@ -24,5 +24,5 @@ message IntroRequest {
 }
 
 message IntroResponse {
-  string into = 1;
+  string intro = 1;
 }

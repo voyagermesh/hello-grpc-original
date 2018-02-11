@@ -1,4 +1,4 @@
-apiVersion: extensions/v1alpha1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -6,6 +6,10 @@ metadata:
   name: hello-grpc
   namespace: default
 spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-grpc
   template:
     metadata:
       labels:
@@ -15,7 +19,7 @@ spec:
       - args:
         - run
         - --v=3
-        image: appscode/hello-grpc:0.1.0
+        image: appscode/hello-grpc:canary
         imagePullPolicy: Always
         name: hello-grpc
         ports:
@@ -31,6 +35,7 @@ metadata:
   labels:
     app: hello-grpc
 spec:
+  type: LoadBalancer
   ports:
   - name: http
     port: 80
