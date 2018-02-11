@@ -19,7 +19,7 @@ spec:
       - args:
         - run
         - --v=3
-        image: appscode/hello-grpc:canary
+        image: appscode/hello-grpc:0.1.0
         imagePullPolicy: Always
         name: hello-grpc
         ports:
