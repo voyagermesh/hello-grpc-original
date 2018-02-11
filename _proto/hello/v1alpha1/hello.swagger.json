@@ -1,0 +1,62 @@
+{
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "v1alpha1IntroRequest": {
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "v1alpha1IntroResponse": {
+      "properties": {
+        "into": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "api.appscode.com",
+  "info": {
+    "title": "hello.proto",
+    "version": "1alpha1"
+  },
+  "paths": {
+    "/apis/hello/v1alpha1/into/json": {
+      "get": {
+        "operationId": "Into",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/v1alpha1IntroResponse"
+            }
+          }
+        },
+        "tags": [
+          "Hello"
+        ]
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "https"
+  ],
+  "swagger": "2.0"
+}

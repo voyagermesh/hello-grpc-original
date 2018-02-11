@@ -1,0 +1,45 @@
+apiVersion: extensions/v1alpha1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-grpc
+  name: hello-grpc
+  namespace: default
+spec:
+  template:
+    metadata:
+      labels:
+        app: hello-grpc
+    spec:
+      containers:
+      - args:
+        - run
+        - --v=3
+        image: appscode/hello-grpc:0.1.0
+        imagePullPolicy: Always
+        name: hello-grpc
+        ports:
+        - containerPort: 9855
+        - containerPort: 50055
+        - containerPort: 56790
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-grpc
+  namespace: default
+  labels:
+    app: hello-grpc
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 9855
+  - name: tls
+    port: 443
+    targetPort: 50055
+  - name: ops
+    port: 56790
+    targetPort: 56790
+  selector:
+    app: hello-grpc
