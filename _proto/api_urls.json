@@ -1,0 +1,8 @@
+{
+  "/apis/hello/v1alpha1/into/json": {
+    "get": {
+      "file": "/hello/v1alpha1/hello.proto",
+      "url": "/apis/hello/v1alpha1/into/json"
+    }
+  }
+}
