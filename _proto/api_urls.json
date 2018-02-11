@@ -4,5 +4,11 @@
       "file": "/hello/v1alpha1/hello.proto",
       "url": "/apis/hello/v1alpha1/intro/json"
     }
+  },
+  "/apis/status/json": {
+    "get": {
+      "file": "/status/status.proto",
+      "url": "/apis/status/json"
+    }
   }
 }
