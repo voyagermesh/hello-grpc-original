@@ -16,6 +16,7 @@ import (
 	"github.com/appscode/go/log"
 	"github.com/appscode/go/runtime"
 	stringz "github.com/appscode/go/strings"
+	_ "github.com/appscode/hello-grpc/pkg/hello"
 	"github.com/appscode/hello-grpc/pkg/server/cmd/options"
 	"github.com/appscode/hello-grpc/pkg/server/endpoints"
 	goprom "github.com/grpc-ecosystem/go-grpc-prometheus"
