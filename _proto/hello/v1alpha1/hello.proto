@@ -1,17 +1,13 @@
 syntax = "proto3";
 
-package appscode.hello.v1alpha1;
+package github.com.appscode.hellogrpc.apis.hello.v1alpha1;
 
 option go_package = "v1alpha1";
-
-option java_multiple_files = true;
-option java_outer_classname = "HelloProto";
-option java_package = "com.appscode.api.hello.v1alpha1";
 
 import "google/api/annotations.proto";
 import "appscode/api/annotations.proto";
 
-service Hello {
+service HelloService {
   rpc Intro(IntroRequest) returns (IntroResponse) {
     option (google.api.http) = {
       get : "/apis/hello/v1alpha1/intro/json"

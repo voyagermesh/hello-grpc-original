@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "status.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/apis/status/json": {
+      "get": {
+        "operationId": "Status",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/statusStatusResponse"
+            }
+          }
+        },
+        "tags": [
+          "StatusService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "statusStatusRequest": {
+      "type": "object"
+    },
+    "statusStatusResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "$ref": "#/definitions/statusVersion"
+        }
+      }
+    },
+    "statusVersion": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "version_strategy": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        },
+        "arch": {
+          "type": "string"
+        },
+        "commit_hash": {
+          "type": "string"
+        },
+        "git_branch": {
+          "type": "string"
+        },
+        "git_tag": {
+          "type": "string"
+        },
+        "commit_timestamp": {
+          "type": "string"
+        },
+        "build_timestamp": {
+          "type": "string"
+        },
+        "build_host": {
+          "type": "string"
+        },
+        "build_host_os": {
+          "type": "string"
+        },
+        "build_host_arch": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

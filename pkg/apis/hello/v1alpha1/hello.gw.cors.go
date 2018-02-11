@@ -11,8 +11,8 @@ package v1alpha1
 
 import "github.com/grpc-ecosystem/grpc-gateway/runtime"
 
-// ExportHelloCorsPatterns returns an array of grpc gatway mux patterns for
-// Hello service to enable CORS.
-func ExportHelloCorsPatterns() []runtime.Pattern {
+// ExportHelloServiceCorsPatterns returns an array of grpc gatway mux patterns for
+// HelloService service to enable CORS.
+func ExportHelloServiceCorsPatterns() []runtime.Pattern {
 	return []runtime.Pattern{}
 }

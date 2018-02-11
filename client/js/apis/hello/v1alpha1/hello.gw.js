@@ -8,15 +8,15 @@ This is a RSVP based Ajax client for gRPC gateway JSON APIs.
 
 var xhr = require('grpc-xhr');
 
-function helloIntro(p, conf) {
+function helloServiceIntro(p, conf) {
     path = '/apis/hello/v1alpha1/intro/json'
     return xhr(path, 'GET', conf, p);
 }
 
 var services = {
-    hello: {
-        intro: helloIntro
+    helloService: {
+        intro: helloServiceIntro
     }
 };
 
-module.exports = {appscode: {hello: {v1alpha1: services}}};
+module.exports = {github: {com: {appscode: {hellogrpc: {apis: {hello: {v1alpha1: services}}}}}}};
