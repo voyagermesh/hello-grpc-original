@@ -23,13 +23,13 @@ spec:
         imagePullPolicy: Always
         name: hello-grpc
         ports:
-        - containerPort: 9855
-        - containerPort: 50055
+        - containerPort: 8080
+        - containerPort: 8443
         - containerPort: 56790
         readinessProbe:
           httpGet:
             path: /apis/status/json
-            port: 9855
+            port: 8080
             scheme: HTTP
 ---
 apiVersion: v1
@@ -44,10 +44,10 @@ spec:
   ports:
   - name: http
     port: 80
-    targetPort: 9855
+    targetPort: 8080
   - name: tls
     port: 443
-    targetPort: 50055
+    targetPort: 8443
   - name: ops
     port: 56790
     targetPort: 56790

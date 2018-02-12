@@ -24,8 +24,8 @@ hello-grpc run [flags]
   -h, --help                          help for run
       --keyFile string                File containing server TLS private key
       --kube-context string           Kube context used by 'kubeconfig' connection
-      --plaintext-addr string         host:port used to server plaintext apis (default ":9855")
-      --secure-addr string            host:port used to server secure apis (default ":50055")
+      --plaintext-addr string         host:port used to server plaintext apis (default ":8080")
+      --secure-addr string            host:port used to server secure apis (default ":8443")
       --tiller-endpoint string        Endpoint of Tiller server, eg, [scheme://]host:port
       --web-addr string               Address to listen on for web interface and telemetry. (default ":56790")
 ```

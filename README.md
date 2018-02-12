@@ -8,7 +8,7 @@ $ ./hack/make.py
 $ hello-grpc run
 ```
 
-Now visit: http://127.0.0.1:9855/apis/hello/v1alpha1/intro/json?name=tamal
+Now visit: http://127.0.0.1:8080/apis/hello/v1alpha1/intro/json?name=tamal
 
 ## Run in a Kubernetes Cluster
 Tested against Minikube v0.25.0 (Kubernetes 1.9.0)

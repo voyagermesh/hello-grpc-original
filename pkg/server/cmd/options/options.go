@@ -20,8 +20,8 @@ type Options struct {
 
 func New() *Options {
 	return &Options{
-		SecureAddr:    ":50055",
-		PlaintextAddr: ":9855",
+		SecureAddr:    ":8443",
+		PlaintextAddr: ":8080",
 		OpsAddress:    ":56790",
 	}
 }
