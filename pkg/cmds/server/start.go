@@ -3,22 +3,27 @@ package server
 import (
 	"net/http"
 	"strings"
-
 	stringz "github.com/appscode/go/strings"
 	utilerrors "github.com/appscode/go/util/errors"
-	"github.com/appscode/grpc-go-addons/cors"
+	grpc_cors "github.com/appscode/grpc-go-addons/cors"
 	"github.com/appscode/grpc-go-addons/endpoints"
 	"github.com/appscode/grpc-go-addons/server"
 	"github.com/appscode/grpc-go-addons/server/options"
+	"github.com/grpc-ecosystem/go-grpc-middleware"
+	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+	"github.com/grpc-ecosystem/go-grpc-middleware/tags"
+	"github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
+	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	gwrt "github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
 
 var (
 	GRPCEndpoints    = endpoints.GRPCRegistry{}
 	GatewayEndpoints = endpoints.ProxyRegistry{}
-	CorsPatterns     = cors.PatternRegistry{}
+	CorsPatterns     = grpc_cors.PatternRegistry{}
 )
 
 type ServerOptions struct {
@@ -51,6 +56,24 @@ func (o ServerOptions) Config() (*server.Config, error) {
 	config.SetGRPCRegistry(GRPCEndpoints)
 	config.SetProxyRegistry(GatewayEndpoints)
 	config.SetCORSRegistry(CorsPatterns)
+
+	config.GRPCServerOption(
+		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
+			grpc_ctxtags.StreamServerInterceptor(),
+			grpc_opentracing.StreamServerInterceptor(),
+			grpc_prometheus.StreamServerInterceptor,
+			grpc_cors.StreamServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
+			grpc_recovery.StreamServerInterceptor(),
+
+		)),
+		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+			grpc_ctxtags.UnaryServerInterceptor(),
+			grpc_opentracing.UnaryServerInterceptor(),
+			grpc_prometheus.UnaryServerInterceptor,
+			grpc_cors.UnaryServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
+			grpc_recovery.UnaryServerInterceptor(),
+		)),
+	)
 
 	config.GatewayMuxOption(gwrt.WithIncomingHeaderMatcher(func(h string) (string, bool) {
 		if stringz.PrefixFold(h, "access-control-request-") ||
