@@ -3,24 +3,33 @@ package cmds
 import (
 	_ "net/http/pprof"
 
-	"github.com/appscode/go/hold"
-	apiCmd "github.com/appscode/hello-grpc/pkg/server/cmd"
-	"github.com/appscode/hello-grpc/pkg/server/cmd/options"
+	"github.com/appscode/hello-grpc/pkg/cmds/server"
 	"github.com/spf13/cobra"
 )
 
-func NewCmdRun() *cobra.Command {
-	opt := options.New()
+func NewCmdRun(stopCh <-chan struct{}) *cobra.Command {
+	o := server.NewServerOptions()
+
 	cmd := &cobra.Command{
-		Use:               "run",
-		Short:             "Run hello apis",
-		DisableAutoGenTag: true,
-		Run: func(cmd *cobra.Command, args []string) {
-			apiCmd.Run(opt)
-			hold.Hold()
+		Use:   "run",
+		Short: "Launch Hello GRPC server",
+		Long:  "Launch Hell GRPC server",
+		RunE: func(c *cobra.Command, args []string) error {
+			if err := o.Complete(); err != nil {
+				return err
+			}
+			if err := o.Validate(args); err != nil {
+				return err
+			}
+			if err := o.RunServer(stopCh); err != nil {
+				return err
+			}
+			return nil
 		},
 	}
 
-	opt.AddFlags(cmd.Flags())
+	flags := cmd.Flags()
+	o.RecommendedOptions.AddFlags(flags)
+
 	return cmd
 }

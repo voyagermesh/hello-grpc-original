@@ -22,6 +22,8 @@ import:
 - package: google.golang.org/genproto
 - package: github.com/grpc-ecosystem/go-grpc-prometheus
   version: master
+- package: github.com/appscode/grpc-go-addons
+  version: master
 testImport:
 - package: github.com/stretchr/testify
   version: v1.1.4

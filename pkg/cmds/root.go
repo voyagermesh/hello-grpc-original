@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 
+	"github.com/appscode/go/signals"
 	v "github.com/appscode/go/version"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -24,7 +25,8 @@ func NewRootCmd(version string) *cobra.Command {
 	// ref: https://github.com/kubernetes/kubernetes/issues/17162#issuecomment-225596212
 	flag.CommandLine.Parse([]string{})
 
-	rootCmd.AddCommand(NewCmdRun())
+	stopCh := signals.SetupSignalHandler()
+	rootCmd.AddCommand(NewCmdRun(stopCh))
 	rootCmd.AddCommand(v.NewCmdVersion())
 
 	return rootCmd
