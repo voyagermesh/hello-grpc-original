@@ -21,6 +21,6 @@ Hello gRPC by Appscode
 
 ### SEE ALSO
 
-* [hello-grpc run](hello-grpc_run.md)	 - Run hello apis
+* [hello-grpc run](hello-grpc_run.md)	 - Launch Hello GRPC server
 * [hello-grpc version](hello-grpc_version.md)	 - Prints binary version number.
 

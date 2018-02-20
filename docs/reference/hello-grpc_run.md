@@ -1,10 +1,10 @@
 ## hello-grpc run
 
-Run hello apis
+Launch Hello GRPC server
 
 ### Synopsis
 
-Run hello apis
+Launch Hell GRPC server
 
 ```
 hello-grpc run [flags]
@@ -13,21 +13,16 @@ hello-grpc run [flags]
 ### Options
 
 ```
-      --api-domain string             Domain used to server hello api
-      --caCertFile string             File containing CA certificate
-      --certFile string               File container server TLS certificate
-      --connector string              Name of connector used to connect to Tiller server. Valid values are: incluster, direct, kubeconfig, appscode
-      --cors-origin-allow-subdomain   Allow CORS request from subdomains of origin
-      --cors-origin-host string       Allowed CORS origin host e.g, domain[:port]
+      --api-domain string             Domain used for apiserver (prod: api.appscode.com
+      --cors-origin-allow-subdomain   Allow CORS request from subdomains of origin (default true)
+      --cors-origin-host string       Allowed CORS origin host e.g, domain[:port] (default "*")
       --enable-cors                   Enable CORS support
-      --enable-java-client            Set true to send SETTINGS frame from the server. Default set to false
   -h, --help                          help for run
-      --keyFile string                File containing server TLS private key
-      --kube-context string           Kube context used by 'kubeconfig' connection
-      --plaintext-addr string         host:port used to server plaintext apis (default ":8080")
-      --secure-addr string            host:port used to server secure apis (default ":8443")
-      --tiller-endpoint string        Endpoint of Tiller server, eg, [scheme://]host:port
-      --web-addr string               Address to listen on for web interface and telemetry. (default ":56790")
+      --plaintext-addr string         host:port used to serve http json apis (default ":8080")
+      --secure-addr string            host:port used to serve secure apis (default ":8443")
+      --tls-ca-file string            File containing CA certificate
+      --tls-cert-file string          File container server TLS certificate
+      --tls-private-key-file string   File containing server TLS private key
 ```
 
 ### Options inherited from parent commands

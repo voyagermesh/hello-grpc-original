@@ -3,14 +3,14 @@ package status
 import (
 	v "github.com/appscode/go/version"
 	proto "github.com/appscode/hello-grpc/pkg/apis/status"
-	"github.com/appscode/hello-grpc/pkg/server/endpoints"
+	"github.com/appscode/hello-grpc/pkg/cmds/server"
 	"golang.org/x/net/context"
 )
 
 func init() {
-	endpoints.GRPCServerEndpoints.Register(proto.RegisterStatusServiceServer, &Server{})
-	endpoints.ProxyServerEndpoints.Register(proto.RegisterStatusServiceHandlerFromEndpoint)
-	endpoints.ProxyServerCorsPattern.Register(proto.ExportStatusServiceCorsPatterns())
+	server.GRPCEndpoints.Register(proto.RegisterStatusServiceServer, &Server{})
+	server.GatewayEndpoints.Register(proto.RegisterStatusServiceHandlerFromEndpoint)
+	server.CorsPatterns.Register(proto.ExportStatusServiceCorsPatterns())
 }
 
 type Server struct {
