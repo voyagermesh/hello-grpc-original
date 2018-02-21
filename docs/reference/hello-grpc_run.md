@@ -18,6 +18,7 @@ hello-grpc run [flags]
       --cors-origin-host string       Allowed CORS origin host e.g, domain[:port] (default "*")
       --enable-cors                   Enable CORS support
   -h, --help                          help for run
+      --log-rpc                       log RPC request and response
       --plaintext-addr string         host:port used to serve http json apis (default ":8080")
       --secure-addr string            host:port used to serve secure apis (default ":8443")
       --tls-ca-file string            File containing CA certificate
