@@ -1,5 +1,5 @@
 hash: a617ea9f81a460a9ec3216683aeda906161eb47ca4cb20b59acb0e132ac141cc
-updated: 2018-02-20T20:23:30.331141711-08:00
+updated: 2018-02-20T20:47:22.986235192-08:00
 imports:
 - name: github.com/appscode/go
   version: 83e7fc1967ed737eedfc87da60c42e9fc4dc684c
@@ -48,9 +48,11 @@ imports:
   subpackages:
   - logging
   - logging/logrus
+  - logging/zap
   - recovery
   - tags
   - tags/logrus
+  - tags/zap
   - tracing/opentracing
   - util/metautils
 - name: github.com/grpc-ecosystem/go-grpc-prometheus
@@ -115,6 +117,18 @@ imports:
   version: e02fc20de94c78484cd5ffb007f8af96be030a45
 - name: github.com/xeipuuv/gojsonschema
   version: 93e72a773fade158921402d6a24c819b48aba29d
+- name: go.uber.org/atomic
+  version: 8474b86a5a6f79c443ce4b2992817ff32cf208b8
+- name: go.uber.org/multierr
+  version: 3c4937480c32f4c13a875a1829af76c98ca3d40a
+- name: go.uber.org/zap
+  version: f85c78b1dd998214c5f2138155b320a4a43fbe36
+  subpackages:
+  - buffer
+  - internal/bufferpool
+  - internal/color
+  - internal/exit
+  - zapcore
 - name: golang.org/x/crypto
   version: 81e90905daefcd6fd217b62423c0908922eadb30
   subpackages:

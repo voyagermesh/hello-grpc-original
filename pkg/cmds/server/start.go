@@ -11,13 +11,15 @@ import (
 	"github.com/appscode/grpc-go-addons/server"
 	"github.com/appscode/grpc-go-addons/server/options"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
-	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
+	//"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
+	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
 	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	gwrt "github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"github.com/sirupsen/logrus"
+	//"github.com/sirupsen/logrus"
+	"go.uber.org/zap"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
@@ -61,26 +63,38 @@ func (o ServerOptions) Config() (*server.Config, error) {
 	config.SetProxyRegistry(GatewayEndpoints)
 	config.SetCORSRegistry(CorsPatterns)
 
-	optsLogrus := []grpc_logrus.Option{
-		grpc_logrus.WithDecider(func(methodFullName string, err error) bool {
-			// will not log gRPC calls if it was a call to healthcheck and no error was raised
-			if err == nil && methodFullName == "/github.com.appscode.hellogrpc.apis.status.StatusService/Status" {
+	optsZap := []grpc_zap.Option{
+		grpc_zap.WithDecider(func(fullMethodName string, err error) bool {
+			if err == nil && fullMethodName == "/github.com.appscode.hellogrpc.apis.status.StatusService/Status" {
 				return false
 			}
-
-			// by default you will log all calls
 			return o.LogRPC
 		}),
 	}
-	logrusEntry := logrus.NewEntry(logrus.New())
-	grpc_logrus.ReplaceGrpcLogger(logrusEntry)
+
+	//optsLogrus := []grpc_logrus.Option{
+	//	grpc_logrus.WithDecider(func(fullMethodName string, err error) bool {
+	//		if err == nil && fullMethodName == "/github.com.appscode.hellogrpc.apis.status.StatusService/Status" {
+	//			return false
+	//		}
+	//		return o.LogRPC
+	//	}),
+	//}
+	//logrusEntry := logrus.NewEntry(logrus.New())
+	//grpc_logrus.ReplaceGrpcLogger(logrusEntry)
+
+	zapLogger, err := zap.NewProduction()
+	if err != nil {
+		return nil, err
+	}
 
 	config.GRPCServerOption(
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
 			grpc_ctxtags.StreamServerInterceptor(),
 			grpc_opentracing.StreamServerInterceptor(),
 			grpc_prometheus.StreamServerInterceptor,
-			grpc_logrus.StreamServerInterceptor(logrusEntry, optsLogrus...),
+			// grpc_logrus.StreamServerInterceptor(logrusEntry, optsLogrus...),
+			grpc_zap.StreamServerInterceptor(zapLogger, optsZap...),
 			grpc_cors.StreamServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
 			grpc_recovery.StreamServerInterceptor(),
 		)),
@@ -88,7 +102,8 @@ func (o ServerOptions) Config() (*server.Config, error) {
 			grpc_ctxtags.UnaryServerInterceptor(),
 			grpc_opentracing.UnaryServerInterceptor(),
 			grpc_prometheus.UnaryServerInterceptor,
-			grpc_logrus.UnaryServerInterceptor(logrusEntry, optsLogrus...),
+			// grpc_logrus.UnaryServerInterceptor(logrusEntry, optsLogrus...),
+			grpc_zap.UnaryServerInterceptor(zapLogger, optsZap...),
 			grpc_cors.UnaryServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
 			grpc_recovery.UnaryServerInterceptor(),
 		)),
