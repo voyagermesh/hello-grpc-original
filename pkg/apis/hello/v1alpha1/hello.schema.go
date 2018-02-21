@@ -24,7 +24,7 @@ func init() {
 	}
 }
 
-func (m *IntroRequest) IsValid() (*gojsonschema.Result, error) {
+func (m *IntroRequest) Valid() (*gojsonschema.Result, error) {
 	return introRequestSchema.Validate(gojsonschema.NewGoLoader(m))
 }
 func (m *IntroRequest) IsRequest() {}

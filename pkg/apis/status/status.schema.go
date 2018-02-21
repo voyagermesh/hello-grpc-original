@@ -19,7 +19,7 @@ func init() {
 	}
 }
 
-func (m *StatusRequest) IsValid() (*gojsonschema.Result, error) {
+func (m *StatusRequest) Valid() (*gojsonschema.Result, error) {
 	return statusRequestSchema.Validate(gojsonschema.NewGoLoader(m))
 }
 func (m *StatusRequest) IsRequest() {}
