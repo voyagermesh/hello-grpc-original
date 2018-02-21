@@ -7,6 +7,7 @@ import (
 	stringz "github.com/appscode/go/strings"
 	utilerrors "github.com/appscode/go/util/errors"
 	grpc_cors "github.com/appscode/grpc-go-addons/cors"
+	grpc_security "github.com/appscode/grpc-go-addons/security"
 	"github.com/appscode/grpc-go-addons/endpoints"
 	"github.com/appscode/grpc-go-addons/server"
 	"github.com/appscode/grpc-go-addons/server/options"
@@ -82,6 +83,7 @@ func (o ServerOptions) Config() (*server.Config, error) {
 			grpc_prometheus.StreamServerInterceptor,
 			grpc_logrus.StreamServerInterceptor(logrusEntry, optsLogrus...),
 			grpc_cors.StreamServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
+			grpc_security.StreamServerInterceptor(),
 			grpc_recovery.StreamServerInterceptor(),
 		)),
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
@@ -90,6 +92,7 @@ func (o ServerOptions) Config() (*server.Config, error) {
 			grpc_prometheus.UnaryServerInterceptor,
 			grpc_logrus.UnaryServerInterceptor(logrusEntry, optsLogrus...),
 			grpc_cors.UnaryServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
+			grpc_security.UnaryServerInterceptor(),
 			grpc_recovery.UnaryServerInterceptor(),
 		)),
 	)
