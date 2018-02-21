@@ -31,6 +31,7 @@ var (
 
 type ServerOptions struct {
 	RecommendedOptions *options.RecommendedOptions
+	LogRPC             bool
 }
 
 func NewServerOptions() *ServerOptions {
@@ -68,7 +69,7 @@ func (o ServerOptions) Config() (*server.Config, error) {
 			}
 
 			// by default you will log all calls
-			return true
+			return o.LogRPC
 		}),
 	}
 	logrusEntry := logrus.NewEntry(logrus.New())

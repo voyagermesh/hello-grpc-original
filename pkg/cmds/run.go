@@ -32,6 +32,7 @@ func NewCmdRun(stopCh <-chan struct{}) *cobra.Command {
 
 	flags := cmd.Flags()
 	o.RecommendedOptions.AddFlags(flags)
+	flags.BoolVar(&o.LogRPC, "log-rpc", o.LogRPC, "log RPC request and response")
 
 	return cmd
 }
