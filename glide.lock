@@ -1,5 +1,5 @@
 hash: a617ea9f81a460a9ec3216683aeda906161eb47ca4cb20b59acb0e132ac141cc
-updated: 2018-02-20T14:50:00.543015415-08:00
+updated: 2018-02-20T20:23:30.331141711-08:00
 imports:
 - name: github.com/appscode/go
   version: 83e7fc1967ed737eedfc87da60c42e9fc4dc684c
@@ -14,7 +14,7 @@ imports:
   - util/errors
   - version
 - name: github.com/appscode/grpc-go-addons
-  version: bb469fe6c4fff97bac817e5bdea38a8aa774168a
+  version: 6820c4fb55a23d7edb564505112f543bf507360f
   subpackages:
   - cors
   - endpoints
@@ -46,8 +46,11 @@ imports:
 - name: github.com/grpc-ecosystem/go-grpc-middleware
   version: d0c54e68681ec7999ac17864470f3bee6521ba2b
   subpackages:
+  - logging
+  - logging/logrus
   - recovery
   - tags
+  - tags/logrus
   - tracing/opentracing
   - util/metautils
 - name: github.com/grpc-ecosystem/go-grpc-prometheus
@@ -96,6 +99,8 @@ imports:
   version: 300106c228d52c8941d4b3de6054a6062a86dda3
 - name: github.com/shurcooL/sanitized_anchor_name
   version: 10ef21a441db47d8b13ebcc5fd2310f636973c77
+- name: github.com/sirupsen/logrus
+  version: f006c2ac4710855cf0f916dd6b77acf6b048dc6e
 - name: github.com/soheilhy/cmux
   version: e09e9389d85d8492d313d73d1469c029e710623f
 - name: github.com/spf13/cobra
@@ -110,6 +115,10 @@ imports:
   version: e02fc20de94c78484cd5ffb007f8af96be030a45
 - name: github.com/xeipuuv/gojsonschema
   version: 93e72a773fade158921402d6a24c819b48aba29d
+- name: golang.org/x/crypto
+  version: 81e90905daefcd6fd217b62423c0908922eadb30
+  subpackages:
+  - ssh/terminal
 - name: golang.org/x/net
   version: da118f7b8e5954f39d0d2130ab35d4bf0e3cb344
   subpackages:
@@ -120,6 +129,11 @@ imports:
   - internal/timeseries
   - lex/httplex
   - trace
+- name: golang.org/x/sys
+  version: 95c6576299259db960f6c5b9b69ea52422860fce
+  subpackages:
+  - unix
+  - windows
 - name: golang.org/x/text
   version: 470f45bf29f4147d6fbd7dfd0a02a848e49f5bf4
   subpackages:
