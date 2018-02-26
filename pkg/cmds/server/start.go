@@ -73,6 +73,15 @@ func (o ServerOptions) Config() (*server.Config, error) {
 			return o.LogRPC
 		}),
 	}
+	payloadDecider := func(ctx context.Context, fullMethodName string, servingObject interface{}) bool {
+		// will not log gRPC calls if it was a call to healthcheck and no error was raised
+		if fullMethodName == "/github.com.appscode.hellogrpc.apis.status.StatusService/Status" {
+			return false
+		}
+
+		// by default you will log all calls
+		return o.LogRPC
+	}
 	glogEntry := ctx_glog.NewEntry(ctx_glog.Logger)
 	grpc_glog.ReplaceGrpcLogger()
 
@@ -81,6 +90,7 @@ func (o ServerOptions) Config() (*server.Config, error) {
 			grpc_ctxtags.StreamServerInterceptor(),
 			grpc_opentracing.StreamServerInterceptor(),
 			grpc_prometheus.StreamServerInterceptor,
+			grpc_glog.PayloadStreamServerInterceptor(glogEntry, payloadDecider),
 			grpc_glog.StreamServerInterceptor(glogEntry, optsGLog...),
 			grpc_cors.StreamServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
 			grpc_security.StreamServerInterceptor(),
@@ -90,6 +100,7 @@ func (o ServerOptions) Config() (*server.Config, error) {
 			grpc_ctxtags.UnaryServerInterceptor(),
 			grpc_opentracing.UnaryServerInterceptor(),
 			grpc_prometheus.UnaryServerInterceptor,
+			grpc_glog.PayloadUnaryServerInterceptor(glogEntry, payloadDecider),
 			grpc_glog.UnaryServerInterceptor(glogEntry, optsGLog...),
 			grpc_cors.UnaryServerInterceptor(grpc_cors.OriginHost(config.CORSOriginHost), grpc_cors.AllowSubdomain(config.CORSAllowSubdomain)),
 			grpc_security.UnaryServerInterceptor(),
