@@ -8,11 +8,14 @@ builds:
 
   goos:
   - linux
-  - darwin
-  - windows
 
   goarch:
-  - amd64
+  - arm64
+  - arm
+
+  goarm:
+  - 6
+  - 7
 
 archive:
   replacements:
@@ -41,13 +44,6 @@ nfpm:
   - deb
   - rpm
 
-brew:
-  github:
-    owner: appscode
-    name: homebrew-tap
-  homepage: https://appscode.com
-  description: hello-grpc
-
 changelog:
   sort: asc
   filters:
@@ -59,8 +55,20 @@ release:
   draft: true
 
 dockers:
-- image: tahsin/hello-grpc-amd64
+- image: tahsin/hello-grpc-arm64
   dockerfile: hack/docker/Dockerfile
   goos: linux
-  goarch: amd64
+  goarch: arm64
+  binary: hello-grpc
+- image: tahsin/hello-grpc-arm7
+  dockerfile: hack/docker/Dockerfile
+  goos: linux
+  goarch: arm
+  goarm: 7
+  binary: hello-grpc
+- image: tahsin/hello-grpc-arm6
+  dockerfile: hack/docker/Dockerfile
+  goos: linux
+  goarch: arm
+  goarm: 6
   binary: hello-grpc
