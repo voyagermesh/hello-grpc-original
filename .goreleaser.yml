@@ -46,12 +46,12 @@ nfpm:
   - deb
   - rpm
 
-    # brew:
-    #   github:
-    #     owner: appscode
-    #     name: homebrew-tap
-    #   homepage: https://appscode.com
-    #   description: hello-grpc
+brew:
+  github:
+    owner: appscode
+    name: homebrew-tap
+  homepage: https://appscode.com
+  description: hello-grpc
 
 changelog:
   sort: asc
