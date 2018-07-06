@@ -1,5 +1,14 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
+#
+
+before:
+  hooks:
+  - go generate ./...
+    #   - env ARCH=amd64 BASE=alpine ./hack/docker/generate.sh
+    #   - env ARCH=arm64 BASE=alpine ./hack/docker/generate.sh
+    #   - env ARCH=arm6 BASE=armhf/alpine ./hack/docker/generate.sh
+    #   - env ARCH=arm7 BASE=armhf/alpine ./hack/docker/generate.sh
 
 builds:
 - env:
@@ -69,7 +78,7 @@ dockers:
 - image: tahsin/hello-grpc-arm64
   dockerfile: hack/docker/Dockerfile
   goos: linux
-  goarch: amd64
+  goarch: arm64
   binary: hello-grpc
 - image: tahsin/hello-grpc-arm7
   dockerfile: hack/docker/Dockerfile
