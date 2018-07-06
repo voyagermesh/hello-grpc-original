@@ -5,10 +5,6 @@
 before:
   hooks:
   - go generate ./...
-    #   - env ARCH=amd64 BASE=alpine ./hack/docker/generate.sh
-    #   - env ARCH=arm64 BASE=alpine ./hack/docker/generate.sh
-    #   - env ARCH=arm6 BASE=armhf/alpine ./hack/docker/generate.sh
-    #   - env ARCH=arm7 BASE=armhf/alpine ./hack/docker/generate.sh
 
 builds:
 - env:
@@ -21,12 +17,12 @@ builds:
 
   goarch:
   - amd64
-  - arm
   - arm64
+    #  - arm
 
-  goarm:
-  - 6
-  - 7
+    #   goarm:
+    #   - 6
+    #   - 7
 
 archive:
   replacements:
@@ -55,12 +51,12 @@ nfpm:
   - deb
   - rpm
 
-brew:
-  github:
-    owner: appscode
-    name: homebrew-tap
-  homepage: https://appscode.com
-  description: hello-grpc
+  # brew:
+  #   github:
+  #     owner: appscode
+  #     name: homebrew-tap
+  #   homepage: https://appscode.com
+  #   description: hello-grpc
 
 changelog:
   sort: asc
@@ -68,6 +64,9 @@ changelog:
     exclude:
     - '^docs:'
     - '^test:'
+
+release:
+  draft: true
 
 dockers:
 - image: tahsin/hello-grpc-amd64
@@ -80,15 +79,15 @@ dockers:
   goos: linux
   goarch: arm64
   binary: hello-grpc
-- image: tahsin/hello-grpc-arm7
-  dockerfile: hack/docker/Dockerfile
-  goos: linux
-  goarch: arm
-  goarm: 7
-  binary: hello-grpc
-- image: tahsin/hello-grpc-arm6
-  dockerfile: hack/docker/Dockerfile
-  goos: linux
-  goarch: arm
-  goarm: 6
-  binary: hello-grpc
+  # - image: tahsin/hello-grpc-arm7
+  #   dockerfile: hack/docker/Dockerfile
+  #   goos: linux
+  #   goarch: arm
+  #   goarm: 7
+  #   binary: hello-grpc
+  # - image: tahsin/hello-grpc-arm6
+  #   dockerfile: hack/docker/Dockerfile
+  #   goos: linux
+  #   goarch: arm
+  #   goarm: 6
+  #   binary: hello-grpc
