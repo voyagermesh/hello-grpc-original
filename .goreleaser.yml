@@ -8,16 +8,18 @@ builds:
 
   goos:
   - linux
-  - darwin
-  - windows
 
   goarch:
   - amd64
+  - arm64
 
-archive:
-  replacements:
-    386: i386
-    amd64: x86_64
+    #  ldflags:
+    #  - -X main.Version={{.Version}} -X main.GitBranch=release-{{.Tag}} -X main.GitTag={{.Tag}} -X main.CommitHash={{.Commit}} -X main.CommitTimestamp={{.Date}} -X main.Arch=amd64 -X main.VersionStrategy=tag -X main.Os=linux -X main.GoOS={{.Env.GOOS}}
+
+    # archive:
+    #   replacements:
+    #     386: i386
+    #     amd64: x86_64
 
 checksum:
   name_template: 'checksums.txt'
@@ -28,25 +30,25 @@ sign:
 snapshot:
   name_template: "{{ .Tag }}-next"
 
-nfpm:
-  replacements:
-    386: i386
-    amd64: x86_64
-  vendor: AppsCode Inc.
-  homepage: https://appscode.com
-  description: hello-grpc
-  license: Apache 2.0
-
-  formats:
-  - deb
-  - rpm
-
-brew:
-  github:
-    owner: appscode
-    name: homebrew-tap
-  homepage: https://appscode.com
-  description: hello-grpc
+  # nfpm:
+  #   replacements:
+  #     386: i386
+  #     amd64: x86_64
+  #   vendor: AppsCode Inc.
+  #   homepage: https://appscode.com
+  #   description: hello-grpc
+  #   license: Apache 2.0
+  # 
+  #   formats:
+  #   - deb
+  #   - rpm
+  # 
+  # brew:
+  #   github:
+  #     owner: appscode
+  #     name: homebrew-tap
+  #   homepage: https://appscode.com
+  #   description: hello-grpc
 
 changelog:
   sort: asc
@@ -63,4 +65,9 @@ dockers:
   dockerfile: hack/docker/Dockerfile
   goos: linux
   goarch: amd64
+  binary: hello-grpc
+- image: tahsin/hello-grpc-arm64
+  dockerfile: hack/docker/Dockerfile
+  goos: linux
+  goarch: arm64
   binary: hello-grpc
