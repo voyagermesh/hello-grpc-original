@@ -10,5 +10,5 @@ COPY --from=build /output/client .
 ENTRYPOINT ["./client"]
 
 
-# docker build -t diptadas/hello-client:1.0 -f Dockerfile.client .
-# docker run -it diptadas/hello-client:1.0 --address=192.168.99.100:30807
+# docker build -t appscode/hello-client:0.1.0 -f Dockerfile.client .
+# docker run -it appscode/hello-client:0.1.0 --address=192.168.99.100:30807

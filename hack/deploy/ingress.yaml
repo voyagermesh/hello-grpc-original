@@ -2,40 +2,43 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    run: test-server
-  name: test-server
+    run: grpc-server
+  name: grpc-server
   namespace: demo
 spec:
   selector:
     matchLabels:
-      run: test-server
+      run: grpc-server
   template:
     metadata:
       labels:
-        run: test-server
+        run: grpc-server
     spec:
       containers:
       - image: appscode/hello-grpc:0.1.0
         args:
         - run
         - --v=3
-        name: test-server
+        name: grpc-server
         imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: test-server
-  name: test-server
+    run: grpc-server
+  name: grpc-server
   namespace: demo
 spec:
   ports:
   - port: 3000
     targetPort: 8080
-    name: grpc
+    name: h2c
   selector:
-    run: test-server
+    run: grpc-server
 ---
 apiVersion: voyager.appscode.com/v1beta1
 kind: Ingress
@@ -51,6 +54,6 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: test-server
+          serviceName: grpc-server
           servicePort: 3000
           proto: h2
