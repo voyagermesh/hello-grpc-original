@@ -93,11 +93,8 @@ func doGRPCStream(address, crtPath, name string) error {
 	}
 	defer conn.Close()
 
-	streamClient, err := hello.NewHelloServiceClient(conn).Stream(context.Background())
+	streamClient, err := hello.NewHelloServiceClient(conn).Stream(context.Background(), &hello.IntroRequest{Name: name})
 	if err != nil {
-		return err
-	}
-	if err = streamClient.Send(&hello.IntroRequest{Name: name}); err != nil {
 		return err
 	}
 

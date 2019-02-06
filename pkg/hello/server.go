@@ -2,8 +2,6 @@ package hello
 
 import (
 	"fmt"
-	"io"
-	"log"
 	"time"
 
 	proto "github.com/appscode/hello-grpc/pkg/apis/hello/v1alpha1"
@@ -28,45 +26,13 @@ func (s *Server) Intro(ctx context.Context, req *proto.IntroRequest) (*proto.Int
 	}, nil
 }
 
-func (s *Server) Stream(stream proto.HelloService_StreamServer) error {
-	requestChan := make(chan string)
-	errChan := make(chan error)
-
-	go receive(stream, requestChan, errChan)
-
-	for {
-		var intro string
-
-		select {
-		case err := <-errChan:
-			return err
-		case name := <-requestChan:
-			intro = fmt.Sprintf("hello, %s!", name)
-		default:
-			intro = "hello, client!"
-		}
-
+func (s *Server) Stream(req *proto.IntroRequest, stream proto.HelloService_StreamServer) error {
+	for i := 0; i < 60; i++ {
+		intro := fmt.Sprintf("%d: hello, %s!", i, req.Name)
 		if err := stream.Send(&proto.IntroResponse{Intro: intro}); err != nil {
 			return err
 		}
-
 		time.Sleep(1 * time.Second)
 	}
-
 	return nil
-}
-
-func receive(stream proto.HelloService_StreamServer, requestChan chan string, errChan chan error) {
-	for {
-		in, err := stream.Recv()
-		if err == io.EOF {
-			log.Println("Received EOF")
-			break
-		}
-		if err != nil {
-			errChan <- err
-		}
-		log.Println("Received", in.Name)
-		requestChan <- in.Name
-	}
 }
