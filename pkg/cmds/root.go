@@ -27,6 +27,7 @@ func NewRootCmd(version string) *cobra.Command {
 
 	stopCh := signals.SetupSignalHandler()
 	rootCmd.AddCommand(NewCmdRun(stopCh))
+	rootCmd.AddCommand(NewCmdClient(stopCh))
 	rootCmd.AddCommand(v.NewCmdVersion())
 
 	return rootCmd

@@ -4,7 +4,7 @@ Launch Hello GRPC server
 
 ### Synopsis
 
-Launch Hell GRPC server
+Launch Hello GRPC server
 
 ```
 hello-grpc run [flags]

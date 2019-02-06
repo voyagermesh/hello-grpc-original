@@ -1,16 +1,28 @@
-## hello-grpc
+## hello-grpc client
 
-Hello gRPC by Appscode
+Launch Hello GRPC client
 
 ### Synopsis
 
-Hello gRPC by Appscode
+Launch Hello GRPC client
+
+```
+hello-grpc client [flags]
+```
 
 ### Options
 
 ```
+      --address string   address of the server
+      --crt string       path to cert file
+  -h, --help             help for client
+      --name string      name field of hello-request (default "appscode")
+```
+
+### Options inherited from parent commands
+
+```
       --alsologtostderr                  log to standard error as well as files
-  -h, --help                             help for hello-grpc
       --log_backtrace_at traceLocation   when logging hits line file:N, emit a stack trace (default :0)
       --log_dir string                   If non-empty, write log files in this directory
       --logtostderr                      log to standard error instead of files
@@ -21,7 +33,5 @@ Hello gRPC by Appscode
 
 ### SEE ALSO
 
-* [hello-grpc client](hello-grpc_client.md)	 - Launch Hello GRPC client
-* [hello-grpc run](hello-grpc_run.md)	 - Launch Hello GRPC server
-* [hello-grpc version](hello-grpc_version.md)	 - Prints binary version number.
+* [hello-grpc](hello-grpc.md)	 - Hello gRPC by Appscode
 

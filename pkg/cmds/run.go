@@ -15,7 +15,7 @@ func NewCmdRun(stopCh <-chan struct{}) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "run",
 		Short: "Launch Hello GRPC server",
-		Long:  "Launch Hell GRPC server",
+		Long:  "Launch Hello GRPC server",
 		RunE: func(c *cobra.Command, args []string) error {
 			if err := o.Complete(); err != nil {
 				return err
