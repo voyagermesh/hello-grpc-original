@@ -2,6 +2,7 @@ package hello
 
 import (
 	"fmt"
+	"time"
 
 	proto "github.com/appscode/hello-grpc/pkg/apis/hello/v1alpha1"
 	"github.com/appscode/hello-grpc/pkg/cmds/server"
@@ -23,4 +24,15 @@ func (s *Server) Intro(ctx context.Context, req *proto.IntroRequest) (*proto.Int
 	return &proto.IntroResponse{
 		Intro: fmt.Sprintf("hello, %s!", req.Name),
 	}, nil
+}
+
+func (s *Server) Stream(req *proto.IntroRequest, stream proto.HelloService_StreamServer) error {
+	for i := 0; i < 60; i++ {
+		intro := fmt.Sprintf("%d: hello, %s!", i, req.Name)
+		if err := stream.Send(&proto.IntroResponse{Intro: intro}); err != nil {
+			return err
+		}
+		time.Sleep(1 * time.Second)
+	}
+	return nil
 }

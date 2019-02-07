@@ -13,6 +13,7 @@ service HelloService {
       get : "/apis/hello/v1alpha1/intro/json"
     };
   }
+  rpc Stream(IntroRequest) returns (stream IntroResponse) {}
 }
 
 message IntroRequest {

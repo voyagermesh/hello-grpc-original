@@ -2,13 +2,38 @@
 Hello gRPC !
 
 ## Run on Host
+
+Build binary:
+
 ```console
 $ ./hack/make.py
+```
 
+Run server:
+
+```console
 $ hello-grpc run
 ```
 
-Now visit: http://127.0.0.1:8080/apis/hello/v1alpha1/intro/json?name=tamal
+Run client (Intro API):
+
+```
+$ hello-grpc client --address=127.0.0.1:8080 --name=appscode
+I0206 17:40:38.495948    4419 logs.go:19] intro:"hello, appscode!" 
+```
+
+Run client (Stream API):
+
+```
+$ hello-grpc client --address=127.0.0.1:8080 --name=appscode --stream
+I0206 17:41:11.933033    4465 logs.go:19] intro:"0: hello, appscode!" 
+I0206 17:41:12.933156    4465 logs.go:19] intro:"1: hello, appscode!" 
+I0206 17:41:13.933201    4465 logs.go:19] intro:"2: hello, appscode!" 
+I0206 17:41:14.933331    4465 logs.go:19] intro:"3: hello, appscode!" 
+...
+```
+
+JSON response: visit http://127.0.0.1:8080/apis/hello/v1alpha1/intro/json?name=tamal
 
 ## Run in a Kubernetes Cluster
 Tested against Minikube v0.25.0 (Kubernetes 1.9.0)

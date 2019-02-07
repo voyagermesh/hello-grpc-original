@@ -17,6 +17,7 @@ hello-grpc client [flags]
       --crt string       path to cert file
   -h, --help             help for client
       --name string      name field of hello-request (default "appscode")
+      --stream           use stream API
 ```
 
 ### Options inherited from parent commands
