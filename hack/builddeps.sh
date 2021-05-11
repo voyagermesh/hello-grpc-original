@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # echo 'Setting up dependencies for compiling protos...'
-# "$(go env GOPATH)"/src/github.com/appscode/hello-grpc/_proto/hack/builddeps.sh
+# "$(go env GOPATH)"/src/voyagermesh.dev/hello-grpc/_proto/hack/builddeps.sh
 
 echo '---'
 echo '--'

@@ -1,9 +1,9 @@
 package status
 
 import (
-	v "github.com/appscode/go/version"
-	proto "github.com/appscode/hello-grpc/pkg/apis/status"
-	"github.com/appscode/hello-grpc/pkg/cmds/server"
+	v "gomodules.xyz/x/version"
+	proto "voyagermesh.dev/hello-grpc/pkg/apis/status"
+	"voyagermesh.dev/hello-grpc/pkg/cmds/server"
 	"golang.org/x/net/context"
 )
 

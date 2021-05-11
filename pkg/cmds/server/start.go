@@ -4,13 +4,13 @@ import (
 	"net/http"
 	"strings"
 
-	stringz "github.com/appscode/go/strings"
-	utilerrors "github.com/appscode/go/util/errors"
-	grpc_cors "github.com/appscode/grpc-go-addons/cors"
-	"github.com/appscode/grpc-go-addons/endpoints"
-	grpc_security "github.com/appscode/grpc-go-addons/security"
-	"github.com/appscode/grpc-go-addons/server"
-	"github.com/appscode/grpc-go-addons/server/options"
+	stringz "gomodules.xyz/x/strings"
+	utilerrors "gomodules.xyz/errors"
+	grpc_cors "gomodules.xyz/grpc-go-addons/cors"
+	"gomodules.xyz/grpc-go-addons/endpoints"
+	grpc_security "gomodules.xyz/grpc-go-addons/security"
+	"gomodules.xyz/grpc-go-addons/server"
+	"gomodules.xyz/grpc-go-addons/server/options"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_glog "github.com/grpc-ecosystem/go-grpc-middleware/logging/glog"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -65,7 +65,7 @@ func (o ServerOptions) Config() (*server.Config, error) {
 	optsGLog := []grpc_glog.Option{
 		grpc_glog.WithDecider(func(methodFullName string, err error) bool {
 			// will not log gRPC calls if it was a call to healthcheck and no error was raised
-			if err == nil && methodFullName == "/github.com.appscode.hellogrpc.apis.status.StatusService/Status" {
+			if err == nil && methodFullName == "/voyagermesh.dev.hellogrpc.apis.status.StatusService/Status" {
 				return false
 			}
 
@@ -75,7 +75,7 @@ func (o ServerOptions) Config() (*server.Config, error) {
 	}
 	payloadDecider := func(ctx context.Context, fullMethodName string, servingObject interface{}) bool {
 		// will not log gRPC calls if it was a call to healthcheck and no error was raised
-		if fullMethodName == "/github.com.appscode.hellogrpc.apis.status.StatusService/Status" {
+		if fullMethodName == "/voyagermesh.dev.hellogrpc.apis.status.StatusService/Status" {
 			return false
 		}
 

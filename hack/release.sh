@@ -2,7 +2,7 @@
 set -xeou pipefail
 
 GOPATH=$(go env GOPATH)
-REPO_ROOT="$GOPATH/src/github.com/appscode/hello-grpc"
+REPO_ROOT="$GOPATH/src/voyagermesh.dev/hello-grpc"
 
 export APPSCODE_ENV=prod
 

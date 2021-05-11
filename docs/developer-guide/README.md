@@ -16,8 +16,8 @@ development environment, please follow [these instructions](https://golang.org/d
 #### Download Source
 
 ```console
-$ go get github.com/appscode/hello-grpc
-$ cd $(go env GOPATH)/src/github.com/appscode/hello-grpc
+$ go get voyagermesh.dev/hello-grpc
+$ cd $(go env GOPATH)/src/voyagermesh.dev/hello-grpc
 ```
 
 #### Install Dev tools

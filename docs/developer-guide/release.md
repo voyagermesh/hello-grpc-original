@@ -7,7 +7,7 @@ The following steps must be done from a Linux x64 bit machine.
 - Push all the changes to remote repo.
 - Build and push hello docker image:
 ```console
-$ cd ~/go/src/github.com/appscode/hello-grpc
+$ cd ~/go/src/voyagermesh.dev/hello-grpc
 ./hack/docker/setup.sh; env APPSCODE_ENV=prod ./hack/docker/setup.sh release
 ```
 

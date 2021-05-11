@@ -8,7 +8,7 @@ GOPATH=$(go env GOPATH)
 SRC=$GOPATH/src
 BIN=$GOPATH/bin
 ROOT=$GOPATH
-REPO_ROOT=$GOPATH/src/github.com/appscode/hello-grpc
+REPO_ROOT=$GOPATH/src/voyagermesh.dev/hello-grpc
 
 source "$REPO_ROOT/hack/libbuild/common/lib.sh"
 source "$REPO_ROOT/hack/libbuild/common/public_image.sh"
@@ -16,20 +16,20 @@ source "$REPO_ROOT/hack/libbuild/common/public_image.sh"
 APPSCODE_ENV=${APPSCODE_ENV:-dev}
 IMG=hello-grpc
 
-DIST=$GOPATH/src/github.com/appscode/hello-grpc/dist
+DIST=$GOPATH/src/voyagermesh.dev/hello-grpc/dist
 mkdir -p $DIST
 if [ -f "$DIST/.tag" ]; then
 	export $(cat $DIST/.tag | xargs)
 fi
 
 clean() {
-    pushd $GOPATH/src/github.com/appscode/hello-grpc/hack/docker
+    pushd $GOPATH/src/voyagermesh.dev/hello-grpc/hack/docker
     rm hello Dockerfile
     popd
 }
 
 build_binary() {
-    pushd $GOPATH/src/github.com/appscode/hello-grpc
+    pushd $GOPATH/src/voyagermesh.dev/hello-grpc
     # ./hack/builddeps.sh
     ./hack/make.py build
     detect_tag $DIST/.tag
@@ -37,7 +37,7 @@ build_binary() {
 }
 
 build_docker() {
-    pushd $GOPATH/src/github.com/appscode/hello-grpc/hack/docker
+    pushd $GOPATH/src/voyagermesh.dev/hello-grpc/hack/docker
     cp $DIST/hello-grpc/hello-grpc-alpine-amd64 hello-grpc
     chmod 755 hello-grpc
 

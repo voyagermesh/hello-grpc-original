@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package github.com.appscode.hellogrpc.apis.hello.v1alpha1;
+package voyagermesh.dev.hellogrpc.apis.hello.v1alpha1;
 
 option go_package = "v1alpha1";
 

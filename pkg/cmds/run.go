@@ -3,9 +3,9 @@ package cmds
 import (
 	_ "net/http/pprof"
 
-	"github.com/appscode/hello-grpc/pkg/cmds/server"
-	_ "github.com/appscode/hello-grpc/pkg/hello"
-	_ "github.com/appscode/hello-grpc/pkg/status"
+	"voyagermesh.dev/hello-grpc/pkg/cmds/server"
+	_ "voyagermesh.dev/hello-grpc/pkg/hello"
+	_ "voyagermesh.dev/hello-grpc/pkg/status"
 	"github.com/spf13/cobra"
 )
 

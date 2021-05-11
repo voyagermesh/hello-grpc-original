@@ -8,9 +8,9 @@ import (
 	_ "net/http/pprof"
 	"strings"
 
-	hello "github.com/appscode/hello-grpc/pkg/apis/hello/v1alpha1"
-	_ "github.com/appscode/hello-grpc/pkg/hello"
-	_ "github.com/appscode/hello-grpc/pkg/status"
+	hello "voyagermesh.dev/hello-grpc/pkg/apis/hello/v1alpha1"
+	_ "voyagermesh.dev/hello-grpc/pkg/hello"
+	_ "voyagermesh.dev/hello-grpc/pkg/status"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

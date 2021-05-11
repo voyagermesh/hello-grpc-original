@@ -4,8 +4,8 @@ import (
 	"flag"
 	"log"
 
-	"github.com/appscode/go/signals"
-	v "github.com/appscode/go/version"
+	"gomodules.xyz/signals"
+	v "gomodules.xyz/x/version"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

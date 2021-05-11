@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	proto "github.com/appscode/hello-grpc/pkg/apis/hello/v1alpha1"
-	"github.com/appscode/hello-grpc/pkg/cmds/server"
+	proto "voyagermesh.dev/hello-grpc/pkg/apis/hello/v1alpha1"
+	"voyagermesh.dev/hello-grpc/pkg/cmds/server"
 	"golang.org/x/net/context"
 )
 

@@ -9,7 +9,7 @@ ROOT=$DIR/..
 
 rm -rf $ROOT/apis $ROOT/schemas
 
-pushd $GOPATH/src/github.com/appscode/hello-grpc/_proto
+pushd $GOPATH/src/voyagermesh.dev/hello-grpc/_proto
 # copy files
 mkdir -p $ROOT/apis $ROOT/schemas
 ./hack/make.sh js

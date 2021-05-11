@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package github.com.appscode.hellogrpc.apis.status;
+package voyagermesh.dev.hellogrpc.apis.status;
 
 option go_package = "status";
 

@@ -68,8 +68,8 @@ func (m *IntroResponse) GetIntro() string {
 }
 
 func init() {
-	proto.RegisterType((*IntroRequest)(nil), "github.com.appscode.hellogrpc.apis.hello.v1alpha1.IntroRequest")
-	proto.RegisterType((*IntroResponse)(nil), "github.com.appscode.hellogrpc.apis.hello.v1alpha1.IntroResponse")
+	proto.RegisterType((*IntroRequest)(nil), "voyagermesh.dev.hellogrpc.apis.hello.v1alpha1.IntroRequest")
+	proto.RegisterType((*IntroResponse)(nil), "voyagermesh.dev.hellogrpc.apis.hello.v1alpha1.IntroResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -97,7 +97,7 @@ func NewHelloServiceClient(cc *grpc.ClientConn) HelloServiceClient {
 
 func (c *helloServiceClient) Intro(ctx context.Context, in *IntroRequest, opts ...grpc.CallOption) (*IntroResponse, error) {
 	out := new(IntroResponse)
-	err := grpc.Invoke(ctx, "/github.com.appscode.hellogrpc.apis.hello.v1alpha1.HelloService/Intro", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/voyagermesh.dev.hellogrpc.apis.hello.v1alpha1.HelloService/Intro", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +105,7 @@ func (c *helloServiceClient) Intro(ctx context.Context, in *IntroRequest, opts .
 }
 
 func (c *helloServiceClient) Stream(ctx context.Context, in *IntroRequest, opts ...grpc.CallOption) (HelloService_StreamClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_HelloService_serviceDesc.Streams[0], c.cc, "/github.com.appscode.hellogrpc.apis.hello.v1alpha1.HelloService/Stream", opts...)
+	stream, err := grpc.NewClientStream(ctx, &_HelloService_serviceDesc.Streams[0], c.cc, "/voyagermesh.dev.hellogrpc.apis.hello.v1alpha1.HelloService/Stream", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,7 +157,7 @@ func _HelloService_Intro_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/github.com.appscode.hellogrpc.apis.hello.v1alpha1.HelloService/Intro",
+		FullMethod: "/voyagermesh.dev.hellogrpc.apis.hello.v1alpha1.HelloService/Intro",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(HelloServiceServer).Intro(ctx, req.(*IntroRequest))
@@ -187,7 +187,7 @@ func (x *helloServiceStreamServer) Send(m *IntroResponse) error {
 }
 
 var _HelloService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "github.com.appscode.hellogrpc.apis.hello.v1alpha1.HelloService",
+	ServiceName: "voyagermesh.dev.hellogrpc.apis.hello.v1alpha1.HelloService",
 	HandlerType: (*HelloServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

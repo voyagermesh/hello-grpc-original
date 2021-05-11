@@ -173,9 +173,9 @@ func (m *Version) GetBuildHostArch() string {
 }
 
 func init() {
-	proto.RegisterType((*StatusRequest)(nil), "github.com.appscode.hellogrpc.apis.status.StatusRequest")
-	proto.RegisterType((*StatusResponse)(nil), "github.com.appscode.hellogrpc.apis.status.StatusResponse")
-	proto.RegisterType((*Version)(nil), "github.com.appscode.hellogrpc.apis.status.Version")
+	proto.RegisterType((*StatusRequest)(nil), "voyagermesh.dev.hellogrpc.apis.status.StatusRequest")
+	proto.RegisterType((*StatusResponse)(nil), "voyagermesh.dev.hellogrpc.apis.status.StatusResponse")
+	proto.RegisterType((*Version)(nil), "voyagermesh.dev.hellogrpc.apis.status.Version")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -202,7 +202,7 @@ func NewStatusServiceClient(cc *grpc.ClientConn) StatusServiceClient {
 
 func (c *statusServiceClient) Status(ctx context.Context, in *StatusRequest, opts ...grpc.CallOption) (*StatusResponse, error) {
 	out := new(StatusResponse)
-	err := grpc.Invoke(ctx, "/github.com.appscode.hellogrpc.apis.status.StatusService/Status", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/voyagermesh.dev.hellogrpc.apis.status.StatusService/Status", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -229,7 +229,7 @@ func _StatusService_Status_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/github.com.appscode.hellogrpc.apis.status.StatusService/Status",
+		FullMethod: "/voyagermesh.dev.hellogrpc.apis.status.StatusService/Status",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StatusServiceServer).Status(ctx, req.(*StatusRequest))
@@ -238,7 +238,7 @@ func _StatusService_Status_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 var _StatusService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "github.com.appscode.hellogrpc.apis.status.StatusService",
+	ServiceName: "voyagermesh.dev.hellogrpc.apis.status.StatusService",
 	HandlerType: (*StatusServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

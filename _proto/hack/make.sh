@@ -9,7 +9,7 @@ ROOT=$PWD
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 ALIAS="Mappscode/api/annotations.proto=github.com/grpc-ecosystem/grpc-gateway/third_party/appscodeapis/appscode/api,"
-ALIAS+="Mgithub.com/appscode/hello-grpc/_proto/hello/v1alpha1/hello.proto=github.com/appscode/hello-grpc/apis/hello/v1alpha1"
+ALIAS+="Mvoyagermesh.dev/hello-grpc/_proto/hello/v1alpha1/hello.proto=voyagermesh.dev/hello-grpc/apis/hello/v1alpha1"
 
 clean() {
 	(find . | grep pb.go | xargs rm) || true
